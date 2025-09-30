@@ -1,0 +1,119 @@
+task: detection
+
+model: RTDETR
+criterion: SetCriterion
+postprocessor: RTDETRPostProcessor
+
+
+RTDETR:
+  backbone: PResNet
+  encoder: HybridEncoder
+  decoder: RTDETRTransformer
+  multi_scale: [608, 640, 640, 640, 704, 768, 800 ]
+
+PResNet:
+  depth: 50
+  variant: d
+  freeze_at: 0
+  return_idx: [ 1, 2, 3 ]
+  num_stages: 4
+  freeze_norm: True
+  pretrained: True
+
+HybridEncoder:
+  in_channels: [ 512, 1024, 2048 ]
+  feat_strides: [ 8, 16, 32 ]
+
+  # intra
+  hidden_dim: 256
+  use_encoder_idx: [ 2 ]
+  num_encoder_layers: 1
+  nhead: 8
+  dim_feedforward: 1024
+  dropout: 0.
+  enc_act: 'gelu'
+  pe_temperature: 10000
+  
+  # cross
+  expansion: 1.0
+  depth_mult: 1
+  act: 'silu'
+
+  # eval
+  eval_spatial_size: [ 640, 640 ]
+
+
+RTDETRTransformer:
+  feat_channels: [ 256, 256, 256 ]
+  feat_strides: [ 8, 16, 32 ]
+  hidden_dim: 256
+  num_levels: 3
+
+  num_queries: 300
+
+  num_decoder_layers: 6
+  num_denoising: 100
+  
+  eval_idx: -1
+  eval_spatial_size: [ 640, 640 ]
+
+
+use_focal_loss: True
+
+RTDETRPostProcessor:
+  num_top_queries: 300
+
+SetCriterion:
+  weight_dict: { loss_focal: 10, loss_ce: 10, loss_bbox: 5, loss_giou: 2, }
+  losses: ['focal', 'boxes', 'labels']
+  alpha: 0.90
+  gamma: 5.0
+
+  matcher:
+    type: HungarianMatcher
+    weight_dict: { cost_class: 10, cost_bbox: 5, cost_giou: 2 }
+    use_focal_loss: True
+#    num_classes: 2
+#    alpha_dict:
+#      0: 0.96,  # Catalpa_ovata 0.77 - 0.96
+#      1: 0.96  # Zelkova_schneideriana 0.66 - 0.96
+#    gamma_dict:
+#      0: 8.6,  # Catalpa_ovata 5.2 - 8.6
+#      1: 8.2  # Zelkova_schneideriana 4.8 -8.
+
+#    num_classes: 13
+    alpha_dict:
+      0: 0.60,  # Betula_albosinensis 0.60
+      1: 0.96,  # Catalpa_ovata 0.77 - 0.96
+      2: 0.66,  # Cinnamomum_camphora 0.66
+      3: 0.5,  # Kalopanax_septemlobus 0.5
+      4: 0.9,  # Phoebe_bournei 0.9
+      5: 0.64,  # Phoebe_chekiangensis 0.64
+      6: 0.72,  # Phoebe_hungmaoensis 0.74 - 0.72
+      7: 0.94,  # Phoebe_nanmu 0.94
+      8: 0.9,  # Phoebe_neurantha 0.9
+      9: 0.86, # Phoebe_sheareri 0.87 0.86
+      10: 0.50, # Sassafras_tzumu 0.5
+      11: 0.56, # Ulmus_pumila 0.56
+      12: 0.96  # Zelkova_schneideriana 0.66 - 0.96
+    gamma_dict:
+      0: 4.0,  # Betula_albosinensis 4.0
+      1: 8.6,  # Catalpa_ovata 5.2 - 8.6
+      2: 7.4,  # Cinnamomum_camphora 7.4
+      3: 4.5,  # Kalopanax_septemlobus 4.0 - 4.2 -
+      4: 8.6,  # Phoebe_bournei 8.6
+      5: 5.0,  # Phoebe_chekiangensis 5.0
+      6: 8.8,  # Phoebe_hungmaoensis 7.6 - 8.2 +
+      7: 8.4,  # Phoebe_nanmu 8.4
+      8: 8.6,  # Phoebe_neurantha 8.6
+      9: 7.6, # Phoebe_sheareri 7.5 + 7.6
+      10: 4.8, # Sassafras_tzumu 4.0 - 4.4 +4.8
+      11: 4.7, # Ulmus_pumila 4.6
+      12: 8.2  # Zelkova_schneideriana 4.8 -8.2
+
+
+
+
+
+
+

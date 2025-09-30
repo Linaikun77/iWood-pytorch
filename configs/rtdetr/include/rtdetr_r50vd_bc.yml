@@ -1,0 +1,85 @@
+task: detection
+
+model: RTDETR
+criterion: SetCriterion
+postprocessor: RTDETRPostProcessor
+
+
+RTDETR:
+  backbone: PResNet
+  encoder: HybridEncoder
+  decoder: RTDETRTransformer
+  multi_scale: [608, 640, 640, 640, 704, 768, 800 ]
+
+PResNet:
+  depth: 50
+  variant: d
+  freeze_at: 0
+  return_idx: [ 1, 2, 3 ]
+  num_stages: 4
+  freeze_norm: True
+  pretrained: True
+
+HybridEncoder:
+  in_channels: [ 512, 1024, 2048 ]
+  feat_strides: [ 8, 16, 32 ]
+
+  # intra
+  hidden_dim: 256
+  use_encoder_idx: [ 2 ]
+  num_encoder_layers: 1
+  nhead: 8
+  dim_feedforward: 1024
+  dropout: 0.
+  enc_act: 'gelu'
+  pe_temperature: 10000
+  
+  # cross
+  expansion: 1.0
+  depth_mult: 1
+  act: 'silu'
+
+  # eval
+  eval_spatial_size: [ 640, 640 ]
+
+
+RTDETRTransformer:
+  feat_channels: [ 256, 256, 256 ]
+  feat_strides: [ 8, 16, 32 ]
+  hidden_dim: 256
+  num_levels: 3
+
+  num_queries: 300
+
+  num_decoder_layers: 6
+  num_denoising: 100
+  
+  eval_idx: -1
+  eval_spatial_size: [ 640, 640 ]
+
+
+use_focal_loss: True
+
+RTDETRPostProcessor:
+  num_top_queries: 300
+
+SetCriterion:
+  weight_dict: { loss_focal: 10, loss_ce: 10, loss_bbox: 5, loss_giou: 2, }
+  losses: ['focal', 'boxes', 'labels']
+  alpha: 0.90
+  gamma: 5.0
+
+  matcher:
+    type: HungarianMatcher
+    weight_dict: { cost_class: 10, cost_bbox: 5, cost_giou: 2 }
+    use_focal_loss: True
+    num_classes: 2
+    alpha_dict:
+      0: 0.96,  # Catalpa_ovata 0.77 - 0.96
+      1: 0.96  # Zelkova_schneideriana 0.66 - 0.96
+    gamma_dict:
+      0: 8.6,  # Catalpa_ovata 5.2 - 8.6
+      1: 8.2  # Zelkova_schneideriana 4.8 -8.
+
+
+

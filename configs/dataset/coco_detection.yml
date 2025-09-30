@@ -1,0 +1,35 @@
+task: detection
+
+num_classes: 13
+remap_mscoco_category: True
+
+train_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    img_folder: data/iwood-mobile-archaeology-240614
+#    ann_file: data/annotations/manual/no11/train_no11_dim-10-16_manual.json # benchmark
+    ann_file: data/annotations/manual/no11/train_all_no11_dim-10-16_manual.json # C90
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  batch_size: 8
+  num_workers: 4
+  drop_last: True
+
+val_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    img_folder: data/IWOOD_cleaned # C90
+    ann_file: data/annotations/manual/val_c13-90.dim-2048.json
+#    img_folder: data/iwood-mobile-archaeology-240614 # benchmark
+#    ann_file: data/annotations/manual/no11/test_no11_dim-10-16_manual.json
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: False
+  batch_size: 8
+  num_workers: 4
+  drop_last: False

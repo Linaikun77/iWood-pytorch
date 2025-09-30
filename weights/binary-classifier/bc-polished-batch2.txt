@@ -1,0 +1,48 @@
+Not init distributed mode.
+Load PResNet50 state_dict
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+resume from weights/binary-classifier/checkpoint-bc.pth
+Loading last_epoch
+Loading model.state_dict
+Loading ema.state_dict
+====evaluate====
+====conf_threshold=0.80
+Test:  [ 0/30]  eta: 0:00:35    time: 1.1691  data: 0.5460  max mem: 1469
+Test:  [10/30]  eta: 0:00:03    time: 0.1791  data: 0.0607  max mem: 1478
+Test:  [20/30]  eta: 0:00:01    time: 0.1088  data: 0.0174  max mem: 1478
+Test:  [29/30]  eta: 0:00:00    time: 0.1263  data: 0.0251  max mem: 1479
+Test: Total time: 0:00:04 (0.1482 s / it)
+Averaged stats: 
+
+==================================================
+Top-1 Accuracy: 0.9703
+==================================================
+
+==================================================
+============= Classification Report =============
+==================================================
+Overall Accuracy:   0.9703
+Precision (Macro):  0.9764
+Recall (Macro):     0.9632
+==================================================
+
+============ Confusion Matrix ============
+Labels: [0, 1]
+[[141   0]
+ [  7  88]]
+==================================================
+
+========== Classification Report ==========
+              precision    recall  f1-score   support
+
+           0       0.95      1.00      0.98       141
+           1       1.00      0.93      0.96        95
+
+    accuracy                           0.97       236
+   macro avg       0.98      0.96      0.97       236
+weighted avg       0.97      0.97      0.97       236
+
+==================================================

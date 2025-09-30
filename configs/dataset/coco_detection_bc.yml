@@ -1,0 +1,36 @@
+task: detection
+
+num_classes: 2
+#remap_mscoco_category: True
+
+train_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    img_folder: data/iwood-mobile-archaeology-240614
+    ann_file: data/annotations/manual/binary_classifier/train_only_catalpa_zelkova.json
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  batch_size: 8
+  num_workers: 4
+  drop_last: True
+
+val_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    img_folder: data/IWOOD_cleaned # C90
+    ann_file: data/annotations/manual/binary_classifier/val_c13-90.json
+#    img_folder: data/iWood-polished-20250413 # batch-2
+#    ann_file: data/annotations/manual/binary_classifier/val_polished.json
+#    img_folder: data/iWood-data-cut # batch-3
+#    ann_file: data/annotations/manual/binary_classifier/val_cut.json
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: False
+  batch_size: 8
+  num_workers: 4
+  drop_last: False

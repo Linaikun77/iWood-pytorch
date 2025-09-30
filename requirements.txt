@@ -1,0 +1,13 @@
+torch==2.0.1
+torchvision==0.15.2
+onnx==1.14.0
+onnxruntime==1.15.1
+numpy<2
+opencv-python
+pycocotools
+PyYAML
+scikit-learn
+scipy
+seaborn
+
+

@@ -1,0 +1,71 @@
+Not init distributed mode.
+Load PResNet50 state_dict
+loading annotations into memory...
+Done (t=0.28s)
+creating index...
+index created!
+resume from weights/no-11/benchmark/no11-benchmark-checkpoint.pth
+Loading last_epoch
+Loading model.state_dict
+Loading ema.state_dict
+====evaluate====
+====generate_bboxes: False
+====generate_confusion_matrix: True
+Image 508032339277 has 1 invalid bounding boxes that were filtered out
+Test:  [  0/143]  eta: 0:07:08    time: 2.9943  data: 1.3772  max mem: 1469
+Test:  [ 10/143]  eta: 0:00:57    time: 0.4286  data: 0.1586  max mem: 1478
+Test:  [ 20/143]  eta: 0:00:42    time: 0.2171  data: 0.0439  max mem: 1479
+Test:  [ 30/143]  eta: 0:00:34    time: 0.2393  data: 0.0653  max mem: 1479
+Test:  [ 40/143]  eta: 0:00:28    time: 0.2001  data: 0.0641  max mem: 1480
+Test:  [ 50/143]  eta: 0:00:24    time: 0.2042  data: 0.0598  max mem: 1481
+Test:  [ 60/143]  eta: 0:00:20    time: 0.1951  data: 0.0494  max mem: 1481
+Test:  [ 70/143]  eta: 0:00:17    time: 0.1778  data: 0.0427  max mem: 1482
+Test:  [ 80/143]  eta: 0:00:14    time: 0.2003  data: 0.0568  max mem: 1482
+Test:  [ 90/143]  eta: 0:00:12    time: 0.1920  data: 0.0434  max mem: 1483
+Test:  [100/143]  eta: 0:00:09    time: 0.1695  data: 0.0312  max mem: 1484
+Test:  [110/143]  eta: 0:00:07    time: 0.1684  data: 0.0353  max mem: 1484
+Test:  [120/143]  eta: 0:00:05    time: 0.2010  data: 0.0405  max mem: 1485
+Test:  [130/143]  eta: 0:00:02    time: 0.2424  data: 0.0689  max mem: 1486
+Test:  [140/143]  eta: 0:00:00    time: 0.2145  data: 0.0651  max mem: 1486
+Test:  [142/143]  eta: 0:00:00    time: 0.1981  data: 0.0485  max mem: 1486
+Test: Total time: 0:00:31 (0.2195 s / it)
+========generating confusion matrix========
+===sorted(set(coco_evaluator.all_targets) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13]
+Saved confusion matrix to: exps/test/confusion_matrix.png
+Averaged stats:
+
+==================================================
+============= Classification Report =============
+==================================================
+Overall Accuracy:   0.9431
+Precision (Macro):  0.9529
+Recall (Macro):     0.9219
+==================================================
+
+============ Confusion Matrix ============
+Labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13]
+[[1958    0    0    0    0    0    1    0    0    0    0    0]
+ [   0  700    0    0    0    0    0    0    0    0    0    0]
+ [   0    0 1341    0    0    0    0    0    0    0    0    0]
+ [   0    0    0 1623    0    0    0    0    0    0    0    0]
+ [   0    0    2    0  888    0    0  102    2    4    0    0]
+ [   0    0    0    0    0 1289    0    0    0   11    0    0]
+ [  31    0    0    0   38    0  776    0    0   59    0    0]
+ [   0    0    0    0  132    9    0 1452    0   26    0    0]
+ [   1    0    0    0   85    0    0  136  261   17    0    0]
+ [   0    0   43    0   11    0    6   92    0 1536    0    0]
+ [   0    0    0    0    0    0    0    0    0    0  707    0]
+ [   0    0    0    0    0    0    0    0    0    0    5  956]]
+==================================================
+
+====== Classification Report for Labels 2 and 13 ======
+              precision    recall  f1-score   support
+
+           2       1.00      1.00      1.00       700
+          13       1.00      0.99      1.00       961
+
+   micro avg       1.00      1.00      1.00      1661
+   macro avg       1.00      1.00      1.00      1661
+weighted avg       1.00      1.00      1.00      1661
+
+==================================================
