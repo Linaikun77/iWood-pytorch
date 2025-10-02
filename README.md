@@ -1,13 +1,16 @@
 
-<div align="center">
+<p align="center">
 
 # A Deep Learning Approach for Species Identification of Archaeological Wood
 
-<img src="docs/iwood-structure.png" alt="Model Architecture" width="600"/>
+</p>
+
+<p align="center">
+<img src="docs/framework.png"  width=50%/>
 
 **Figure 1. Overall architecture of our proposed model.**
 
-</div>
+</p>
 
 ### Model Zoo
 
@@ -16,8 +19,7 @@
 no11-C90 |         data/iwood-mobile-archaeology-240614 (no11)         | data/annotations/manual/no11/train_all_no11_dim-10-16_manual.json |                             data/IWOOD_cleaned                              | data/annotations/manual/val_c13-90.dim-2048.json |                                         [Download](https://github.com/Linaikun77/iWood-pytorch/releases/download/v1.0.0/no11-C90-checkpoint.pth)                                     |
 no11-benchmark |         data/iwood-mobile-archaeology-240614 (no11)         | data/annotations/manual/no11/train_no11_dim-10-16_manual.json |                 data/iwood-mobile-archaeology-240614 (n011)                 | data/annotations/manual/no11/test_no11_dim-10-16_manual.json |                         [Download](https://github.com/Linaikun77/iWood-pytorch/releases/download/v1.0.0/no11-benchmark-checkpoint.pth)                          |
 binary-classifier | data/iwood-mobile-archaeology-240614 (only_catalpa_zelkova) | data/annotations/manual/binary_classifier/train_only_catalpa_zelkova.json | data/IWOOD_cleaned<br/>data/iWood-polished-20250413<br/>data/iWood-data-cut | data/annotations/manual/binary_classifier/val_c13-90.json<br/>data/annotations/manual/binary_classifier/val_polished.json<br/>data/annotations/manual/binary_classifier/val_cut.json |        [Download](https://github.com/Linaikun77/iWood-pytorch/releases/download/v1.0.0/checkpoint-bc.pth)                                                                 |
-The pretrained model weights are hosted on the [Releases page](https://github.com/Linaikun77/iWood-pytorch/releases).  
-Please download them from the links above and place them in the corresponding `weights/` directory before training or evaluation.
+
 
 Notes:
 - Please modify the parameters in the `configs/dataset/iwood_12.yml` and `iwood_bc.yml` file according to the table.
@@ -28,22 +30,12 @@ Notes:
 
 ### Results
 
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; text-align: center;">
-
-<div>
-  <p><strong>Standard Images (Model:no11-benchmark)</strong></p>
-  <img src="docs/standard images.png" alt="Confusion Matrix (Standard)" width="350"/>
-</div>
-
-<div>
-  <p><strong>Archaeological Wood Images (Model:no11-C90)</strong></p>
-  <img src="docs/archaeological wood images.png" alt="Confusion Matrix (Archaeological)" width="350"/>
-</div>
-
-</div>
+<p align="center">
+<img src="docs/standard.png" width=25% class="center">
+<img src="docs/archaeological.png" width=25% class="center">
+</p>
 
 <p align="center">Figure 2. Confusion matrices on standard and archaeological wood image datasets.</p>
-
 
 - **Modify `output_dir` in `configs/iwood/iwood_r50vd_6x_coco.yml` to change the model output directory.**
 - **Please modify the definition of the `evaluate` function in `src/solver/det_engine.py`.**
