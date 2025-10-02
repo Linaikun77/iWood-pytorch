@@ -17,16 +17,16 @@ from pycocotools import mask as coco_mask
 
 from src.core import register
 
-__all__ = ['CocoDetection']
+__all__ = ['IwoodClassification']
 
 
 @register
-class CocoDetection(torchvision.datasets.CocoDetection):
+class IwoodClassification(torchvision.datasets.CocoDetection):
     __inject__ = ['transforms']
     __share__ = ['remap_mscoco_category']
 
     def __init__(self, img_folder, ann_file, transforms, return_masks, remap_mscoco_category=False):
-        super(CocoDetection, self).__init__(img_folder, ann_file)
+        super(IwoodClassification, self).__init__(img_folder, ann_file)
         self._transforms = transforms
         self.prepare = ConvertCocoPolysToMask(return_masks, remap_mscoco_category)
         self.img_folder = img_folder
@@ -36,7 +36,7 @@ class CocoDetection(torchvision.datasets.CocoDetection):
 
 
     def __getitem__(self, idx):
-        img, target = super(CocoDetection, self).__getitem__(idx)
+        img, target = super(IwoodClassification, self).__getitem__(idx)
         image_id = self.ids[idx]
         target = {'image_id': image_id, 'annotations': target}
         img, target = self.prepare(img, target)
@@ -154,7 +154,7 @@ class ConvertCocoPolysToMask(object):
         if keypoints is not None:
             target["keypoints"] = keypoints
 
-        # for conversion to coco api
+        # for conversion to iwood api
         #
         area = torch.tensor([obj["area"] for obj in anno])
         iscrowd = torch.tensor([obj["iscrowd"] if "iscrowd" in obj else 0 for obj in anno])

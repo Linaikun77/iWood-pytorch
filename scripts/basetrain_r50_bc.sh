@@ -8,8 +8,7 @@ mkdir -p exps
 mkdir -p ${EXP_DIR}
 
 python tools/train.py \
-    --config configs/rtdetr/rtdetr_r50vd_6x_bc.yml \
+    --config configs/iwood/iwood_r50vd_6x_bc.yml \
     --seed 66 \
     2>&1 | tee ${EXP_DIR}/bc-C90.txt
-#     2>&1 | tee ${EXP_DIR}/Binary_Classification.txt
-#     --tuning weights/no-11/c13-90/no11-C90-checkpoint.pth \
+

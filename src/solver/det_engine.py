@@ -16,7 +16,7 @@ import torch.amp
 import matplotlib.colors as mcolors
 from matplotlib import pyplot as plt, patches
 from PIL import Image
-from src.data import CocoEvaluator, mscoco_category2name
+from src.data import iWoodEvaluator, mscoco_category2name
 from src.misc import (MetricLogger, SmoothedValue, reduce_dict, logger)
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
@@ -116,7 +116,7 @@ def evaluate(model: torch.nn.Module, criterion: torch.nn.Module, postprocessors,
     else:
         iou_types = ['bbox']
 
-    coco_evaluator = CocoEvaluator(base_ds, iou_types)
+    iwood_evaluator = iWoodEvaluator(base_ds, iou_types)
 
     all_res = {}
     for samples, targets in metric_logger.log_every(data_loader, 10, header):
@@ -129,8 +129,8 @@ def evaluate(model: torch.nn.Module, criterion: torch.nn.Module, postprocessors,
 
         res = {target['image_id'].item(): output for target, output in zip(targets, results)}
 
-        if coco_evaluator is not None:
-            coco_evaluator.update(res)
+        if iwood_evaluator is not None:
+            iwood_evaluator.update(res)
 
         all_res.update(res)
 
@@ -161,9 +161,9 @@ def evaluate(model: torch.nn.Module, criterion: torch.nn.Module, postprocessors,
 
     # if generate_confusion_matrix:
     #     print("========generating confusion matrix========")
-    #     labels_unique = sorted(set(coco_evaluator.all_preds))
-    #     print("===sorted(set(coco_evaluator.all_targets)",labels_unique)
-    #     cm = confusion_matrix(coco_evaluator.all_targets, coco_evaluator.all_preds, labels=labels_unique)
+    #     labels_unique = sorted(set(iwood_evaluator.all_preds))
+    #     print("===sorted(set(iwood_evaluator.all_targets)",labels_unique)
+    #     cm = confusion_matrix(iwood_evaluator.all_targets, iwood_evaluator.all_preds, labels=labels_unique)
     #
     #     label_names = [mscoco_category2name[label] for label in labels_unique]
     #
@@ -247,12 +247,12 @@ def evaluate(model: torch.nn.Module, criterion: torch.nn.Module, postprocessors,
 
     metric_logger.synchronize_between_processes()
     print("Averaged stats:", metric_logger)
-    if coco_evaluator is not None:
-        coco_evaluator.synchronize_between_processes()
+    if iwood_evaluator is not None:
+        iwood_evaluator.synchronize_between_processes()
 
-    if coco_evaluator is not None:
-        coco_evaluator.accumulate()
-        classification_stats = coco_evaluator.summarize()
+    if iwood_evaluator is not None:
+        iwood_evaluator.accumulate()
+        classification_stats = iwood_evaluator.summarize()
 
 
     stats = {}
@@ -260,7 +260,7 @@ def evaluate(model: torch.nn.Module, criterion: torch.nn.Module, postprocessors,
         stats['classification'] = classification_stats
 
 
-    return stats, coco_evaluator
+    return stats, iwood_evaluator
 
 
 @torch.no_grad()

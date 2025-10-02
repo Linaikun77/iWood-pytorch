@@ -1,1 +1,6 @@
-*.pth*.pth
+*.pth
+.idea/
+weights/binary-classifier/checkpoint-bc.pth
+weights/no-11/benchmark/no11-benchmark-checkpoint.pth
+weights/no-11/c13-90/no11-C90-checkpoint.pth
+

@@ -1,4 +1,4 @@
-task: detection
+task: classification
 
 num_classes: 2
 #remap_mscoco_category: True
@@ -6,7 +6,7 @@ num_classes: 2
 train_dataloader:
   type: DataLoader
   dataset:
-    type: CocoDetection
+    type: IwoodClassification
     img_folder: data/iwood-mobile-archaeology-240614
     ann_file: data/annotations/manual/binary_classifier/train_only_catalpa_zelkova.json
     transforms:
@@ -20,7 +20,7 @@ train_dataloader:
 val_dataloader:
   type: DataLoader
   dataset:
-    type: CocoDetection
+    type: IwoodClassification
     img_folder: data/IWOOD_cleaned # C90
     ann_file: data/annotations/manual/binary_classifier/val_c13-90.json
 #    img_folder: data/iWood-polished-20250413 # batch-2

@@ -11,7 +11,7 @@ import PIL
 __all__ = ['show_sample']
 
 def show_sample(sample):
-    """for coco dataset/dataloader
+    """for iwood dataset/dataloader
     """
     import matplotlib.pyplot as plt
     from torchvision.transforms.v2 import functional as F

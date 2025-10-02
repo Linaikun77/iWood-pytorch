@@ -1,4 +1,4 @@
-task: detection
+task: classification
 
 model: RTDETR
 criterion: SetCriterion

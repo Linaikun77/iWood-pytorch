@@ -83,7 +83,7 @@ def main(args, ):
     # import onnxruntime as ort 
     # from PIL import Image, ImageDraw, ImageFont
     # from torchvision.transforms import ToTensor
-    # from src.data.coco.coco_dataset import mscoco_category2name, mscoco_category2label, mscoco_label2category
+    # from src.data.iwood.iwood_dataset import mscoco_category2name, mscoco_category2label, mscoco_label2category
 
     # # print(onnx.helper.printable_graph(mm.graph))
 

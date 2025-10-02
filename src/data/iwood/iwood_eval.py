@@ -21,13 +21,13 @@ import pycocotools.mask as mask_util
 from src.misc import dist
 
 
-__all__ = ['CocoEvaluator',]
+__all__ = ['iWoodEvaluator',]
 
 from src.nn.criterion.utils import AverageMeter
 
 """ Modified COCO evaluator for image classification evaluation.
 """
-class CocoEvaluator(object):
+class iWoodEvaluator(object):
     def __init__(self, coco_gt, iou_types, top_k=300, conf_threshold=0.92):
         assert isinstance(iou_types, (list, tuple))
         coco_gt = copy.deepcopy(coco_gt)

@@ -1,5 +1,5 @@
 
-from .coco import *
+from .iwood import *
 from .cifar10 import CIFAR10
 
 from .dataloader import *

@@ -5,7 +5,7 @@ import argparse
 
 import torch
 
-from src.data.coco.coco_utils import generate_batch_coco_annotation
+from src.data.iwood.iwood_utils import generate_batch_coco_annotation
 
 # ensure project root is on PYTHONPATH
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
@@ -20,7 +20,7 @@ def parse_args():
         description="Batch or single-image inference script, with optional plotting and result output"
     )
     parser.add_argument('--config', '-c', type=str,
-                        default='configs/rtdetr/rtdetr_r50vd_6x_coco.yml',
+                        default='configs/iwood/iwood_r50vd_6x_coco.yml',
                         help='Path to the config file')
     parser.add_argument('--resume', '-r', type=str, required=True,
                         help='Path to the model checkpoint')

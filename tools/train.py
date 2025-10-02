@@ -20,7 +20,7 @@ def main(args, ) -> None:
         'Only support from_scrach or resume or tuning at one time'
 
     cfg = YAMLConfig(
-        args.config, # rtdetr_r50vd_6x_coco.yml
+        args.config,
         resume=args.resume, 
         use_amp=args.amp,
         tuning=args.tuning

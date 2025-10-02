@@ -7,7 +7,7 @@ mkdir -p exps
 mkdir -p ${EXP_DIR}
 
 python tools/train.py \
-    --config configs/rtdetr/rtdetr_r50vd_6x_bc.yml \
+    --config configs/iwood/iwood_r50vd_6x_bc.yml \
     --seed 66 \
     --resume weights/binary-classifier/checkpoint-bc.pth \
     --test-only \
