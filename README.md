@@ -1,16 +1,25 @@
+[//]: # (<p align="center">)
 
-<p align="center">
+[//]: # ()
+[//]: # (# A Deep Learning Approach for Species Identification of Archaeological Wood)
+
+[//]: # ()
+[//]: # (<img src="docs/framework.png"  width=50%/>)
+
+[//]: # ()
+[//]: # (Figure 1. Overall architecture of our proposed model.)
+
+[//]: # ()
+[//]: # (</p>)
+<div align="center">
 
 # A Deep Learning Approach for Species Identification of Archaeological Wood
 
-</p>
-
-<p align="center">
-<img src="docs/framework.png"  width=50%/>
+<img src="docs/framework.png" width="50%" />
 
 **Figure 1. Overall architecture of our proposed model.**
 
-</p>
+</div>
 
 ### Model Zoo
 
@@ -23,22 +32,22 @@ binary-classifier | data/iwood-mobile-archaeology-240614 (only_catalpa_zelkova) 
 
 Notes:
 - Please modify the parameters in the `configs/dataset/iwood_12.yml` and `iwood_bc.yml` file according to the table.
-- **no11 -- indicates that the dataset does not contain the 11th category (Sassafras tzumu).**
-- **benchmark -- indicates that the labeled dataset is split into 80% training set and 20% testing set. The benchmark dataset refers to `iwood-mobile-archaeology-240614`**
-- **C90 -- indicates that the entire benchmark dataset is used for training, while the `IWOOD_cleaned` dataset is used for testing.**
+- **no11** -- indicates that the dataset does not contain the 11th category (Sassafras tzumu).
+- **benchmark** -- indicates that the labeled dataset is split into 80% training set and 20% testing set. The benchmark dataset refers to `iwood-mobile-archaeology-240614`
+- **C90** -- indicates that the entire benchmark dataset is used for training, while the `IWOOD_cleaned` dataset is used for testing.
 - **For the binary-classifier model, the classification accuracy reported in the paper is the mean average precision evaluated across multiple confidence thresholds.**
 
 ### Results
 
 <p align="center">
-<img src="docs/standard.png" width=25% class="center">
-<img src="docs/archaeological.png" width=25% class="center">
+<img src="docs/standard.png" width=50% class="center">
+<img src="docs/archaeological.png" width=50% class="center">
 </p>
 
 <p align="center">Figure 2. Confusion matrices on standard and archaeological wood image datasets.</p>
 
-- **Modify `output_dir` in `configs/iwood/iwood_r50vd_6x_coco.yml` to change the model output directory.**
-- **Please modify the definition of the `evaluate` function in `src/solver/det_engine.py`.**
+- Modify `output_dir` in `configs/iwood/iwood_r50vd_6x_coco.yml` to change the model output directory.
+- *lease modify the definition of the `evaluate` function in `src/solver/det_engine.py`.
 
 ### Quick start
 
