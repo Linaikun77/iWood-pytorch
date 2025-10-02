@@ -40,8 +40,8 @@ Notes:
 ### Results
 
 <p align="center">
-<img src="docs/standard.png" width=50% class="center">
-<img src="docs/archaeological.png" width=50% class="center">
+<img src="docs/standard.png" width=45% class="center">
+<img src="docs/archaeological.png" width=45% class="center">
 </p>
 
 <p align="center">Figure 2. Confusion matrices on standard and archaeological wood image datasets.</p>
