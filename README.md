@@ -1,16 +1,4 @@
-[//]: # (<p align="center">)
 
-[//]: # ()
-[//]: # (# A Deep Learning Approach for Species Identification of Archaeological Wood)
-
-[//]: # ()
-[//]: # (<img src="docs/framework.png"  width=50%/>)
-
-[//]: # ()
-[//]: # (Figure 1. Overall architecture of our proposed model.)
-
-[//]: # ()
-[//]: # (</p>)
 <div align="center">
 
 # A Deep Learning Approach for Species Identification of Archaeological Wood
@@ -65,17 +53,20 @@ pip install -r requirements.txt
 
 <details>
 <summary>Data</summary>
-
+<img src="docs/data.png" alt="dataset_overview" width="500"/>
 
 ```
 --data/
   --annotations/                            # annotation json files.
-  --iwood-mobile-archaeology-240614/        # all 12 categories of images (13 image categories without Sassafras tzumu).
-  --IWOOD_cleaned/                          # the batch-1 dataset contains Catalpa ovata and Zelkova schneideriana.
-  --iWood-polished-20250413/                # the batch-2 dataset for binary classification evaluation.
-  --iWood-data-cut/                         # the batch-3 dataset for binary classification evaluation.
+  --iwood-mobile-archaeology-240614/        # all 12 categories of standard images (13 image categories without Sassafras tzumu).
+  --IWOOD_cleaned/                          # the batch-1 archaeological dataset contains Catalpa ovata and Zelkova schneideriana.
+  --iWood-polished-20250413/                # the batch-2 archaeological dataset for binary classification evaluation.
+  --iWood-data-cut/                         # the batch-3 archaeological dataset for binary classification evaluation.
 ```
+- We release a subset of the dataset for reference and evaluation.  
+  Download link: [**Download**](https://github.com/Linaikun77/iWood-pytorch/releases/download/v1.0.0/data.zip)  
 - Modify config [`img_folder`, `ann_file`](configs/dataset/iwood_12.yml)
+
 </details>
 
 
