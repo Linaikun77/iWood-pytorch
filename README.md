@@ -53,7 +53,9 @@ pip install -r requirements.txt
 
 <details>
 <summary>Data</summary>
+<p align="center">
 <img src="docs/data.png" alt="dataset_overview" width="500"/>
+</p>
 
 ```
 --data/
